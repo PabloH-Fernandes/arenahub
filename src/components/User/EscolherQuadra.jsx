@@ -50,7 +50,7 @@ const EscolherQuadra = ({ data, updateFieldHandler, autoadvance, arenaId }) => {
       <div className="quadras-grid">
         {quadras.length > 0 ? (
           quadras.map((quadra) => (
-            <div className="quadra-card" key={quadra.id_quadra}>
+            <div className="quadra-card" key={quadra.id_quadra || quadra.id}>
               <div className="quadra-info">
                 <h3>{quadra.nome}</h3>
               </div>
@@ -64,7 +64,16 @@ const EscolherQuadra = ({ data, updateFieldHandler, autoadvance, arenaId }) => {
                       window.location.href = '/loginUser';
                       return;
                   }
-                  updateFieldHandler("id_quadra", quadra.id_quadra);
+                  
+                  const quadraId = quadra.id_quadra;
+                  
+                  if (!quadraId) {
+                      console.error("ID da quadra não encontrado no objeto:", quadra);
+                      alert("Erro: ID da quadra não identificado.");
+                      return;
+                  }
+
+                  updateFieldHandler("id_quadra", quadraId);
                   updateFieldHandler("quadra_valor_hora", quadra.valor_hora);
                   autoadvance();
                 }}

@@ -28,6 +28,39 @@ function Agendar() {
   const navigate = useNavigate();
   const [data, setData] = useState(formTemplate);
   const [error, setError] = useState(null);
+  const [arenaRealId, setArenaRealId] = useState(null);
+
+  console.log("Agendar State Data:", data);
+
+  useEffect(() => {
+      const resolveArenaId = async () => {
+          if (!isNaN(id)) {
+              setArenaRealId(id);
+              return;
+          }
+          
+          try {
+               const response = await fetch(`${import.meta.env.VITE_API_URL}/arena`);
+             if (response.ok) {
+                 const arenas = await response.json();
+                 const found = arenas.find(a => a.slug === id || a.nome === id || a.nome_arena === id);
+                 if (found) {
+                     setArenaRealId(found.id || found.id_arena);
+                     console.log("Arena Slug resolvida para ID:", found.id || found.id_arena);
+                 } else {
+                     console.warn("Arena não encontrada pelo slug:", id);
+                     setArenaRealId(id); 
+                 }
+             }
+          } catch (e) {
+              console.error("Erro ao resolver slug da arena:", e);
+              setArenaRealId(id);
+          }
+      };
+
+      if (id) resolveArenaId();
+  }, [id]);
+
 
   const updateFieldHandler = (key, value) => {
     setData((prev) => ({
@@ -44,15 +77,13 @@ function Agendar() {
           const storedIdCliente = localStorage.getItem("id_cliente");
           console.log("Creating appointment. Stored ID Cliente (raw):", storedIdCliente);
 
-          // Validação Defensiva: Bloqueia se nulo ou indefinido
           if (!storedIdCliente) {
               const errorMsg = "Sessão expirada ou usuário não identificado. Faça login novamente.";
               console.error(errorMsg);
-              setError(errorMsg); // Exibe erro na UI
-              return; // Bloqueia a requisição
+              setError(errorMsg); 
+              return; 
           }
 
-          // Conversão Explícita para Number (Postgres/Backend pode rejeitar string)
           const idClienteNumber = Number(storedIdCliente);
 
           if (isNaN(idClienteNumber)) {
@@ -66,11 +97,11 @@ function Agendar() {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json',
-                  'Accept': 'application/json' // Boa prática para APIs
+                  'Accept': 'application/json'
               },
               body: JSON.stringify({
                   "id_quadra": data.id_quadra,
-                  "id_cliente": idClienteNumber, // Envia como número
+                  "id_cliente": idClienteNumber,
                   "dia": data.dia,
                   "inicio": data.horario,
                   "fim": horarioFinal,
@@ -108,7 +139,7 @@ function Agendar() {
       data={data}
       updateFieldHandler={updateFieldHandler}
       autoadvance = {() => changeStep(currentStep + 1)}
-      arenaId={id}
+      arenaId={arenaRealId || id}
     />,
     <EscolherData
       key="data"
@@ -119,7 +150,7 @@ function Agendar() {
       key="horario" 
       data={data}
       updateFieldHandler={updateFieldHandler}
-      arenaId={id}
+      arenaId={arenaRealId || id}
     />,
     <ConfirmarAgendamento
       key="confirmar"
@@ -145,7 +176,7 @@ function Agendar() {
         <HeaderUser paginaAtual="agendar" />
       <div className="form-container">
         <form onSubmit={handleFormSubmit}>
-      {currentStep > 0 && <Steps currentStep={currentStep} id_quadra={data.id_quadra} />}
+      {currentStep > 0 && <Steps currentStep={currentStep} id_quadra={data.id_quadra} arenaId={arenaRealId || id} />}
           <div className="inputs-container">
               {currentComponent}
               {error && currentStep === 3 && <p style={{color: 'red', textAlign: 'center'}}>{error}</p>}

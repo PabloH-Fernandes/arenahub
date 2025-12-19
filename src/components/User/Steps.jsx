@@ -13,23 +13,35 @@ const svgOk = [<svg key="ok" width="20" height="20" viewBox="0 0 20 20" fill="no
 </svg>
 ];
 
-const Steps = ({currentStep, id_quadra}) => {
+const Steps = ({currentStep, id_quadra, arenaId}) => {
     const [arena, setArena] = useState(null);
 
     useEffect(() => {
-        const fetchArena = async () => {
-            const id = id_quadra || 11;
-            try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/quadra/${id}`);
-                const data = await response.json();
-                setArena(data);
-            } catch (error) {
-                console.error("Erro ao buscar arena:", error);
+        const fetchInfo = async () => {
+            if (id_quadra) {
+                try {
+                    const response = await fetch(`${import.meta.env.VITE_API_URL}/quadra/${id_quadra}`);
+                    if (!response.ok) throw new Error("Erro ao buscar quadra");
+                    const data = await response.json();      
+                    const quadraData = Array.isArray(data) ? data[0] : data;
+                    setArena(quadraData); 
+                } catch (error) {
+                    console.error("Erro ao buscar info da quadra:", error);
+                }
+            } 
+            else if (arenaId) {
+                 try {
+                    const response = await fetch(`${import.meta.env.VITE_API_URL}/arena/id/${arenaId}`);
+                    if (!response.ok) throw new Error("Erro ao buscar arena");
+                    const data = await response.json();
+                    const arenaData = Array.isArray(data) ? data[0] : data;
+                    setArena(arenaData);
+                 } catch (e) { console.error("Erro ao buscar info da arena:", e) }
             }
         };
 
-        fetchArena();
-    }, [id_quadra]);
+        fetchInfo();
+    }, [id_quadra, arenaId]);
 
     return (
         <div className="steps-wrapper">

@@ -14,6 +14,7 @@ const horas = [
 ];
 
 function carregarHorarios(horarioFuncionamento, data, updateFieldHandler, agendamentos) {
+    if (horarioFuncionamento === "FECHADO") return <p>A arena não funciona neste dia.</p>;
     if (!horarioFuncionamento || !horarioFuncionamento.abertura || !horarioFuncionamento.fechamento) return <p>Carregando horários...</p>;
 
     const { abertura, fechamento } = horarioFuncionamento;
@@ -96,18 +97,31 @@ const EscolherHorario = ({data, updateFieldHandler, arenaId}) => {
 
     useEffect(() => {
         const fetchHorario = async () => {
-            if (!data.dia || !arenaId) return;
+            console.log("Fetch Horario - ArenaID:", arenaId, "Dia:", data.dia);
+
+            if (!data.dia || !arenaId || arenaId === "undefined") {
+                console.warn(" fetchHorario cancelado: dados incompletos.");
+                return;
+            }
 
             try {
                 const [year, month, day] = data.dia.split('-').map(Number);
                 const dateObj = new Date(year, month - 1, day);
                 const diaSemana = dateObj.getDay();
+                
+                console.log("Calculando dia da semana:", { data: data.dia, year, month, day, diaSemana });
 
                 const response = await fetch(`${import.meta.env.VITE_API_URL}/horario/${arenaId}/${diaSemana}`);
                 const result = await response.json();
-                
-                const horario = Array.isArray(result) ? result[0] : result;
-                setHorarioFuncionamento(horario);
+                console.log("Horarios fetched:", result);
+
+                if ((Array.isArray(result) && result.length === 0) || (result.error && result.error === 'Horário não encontrado')) {
+                    console.warn("Nenhum horário de funcionamento encontrado para este dia.");
+                    setHorarioFuncionamento("FECHADO"); 
+                } else {
+                    const horario = Array.isArray(result) ? result[0] : result;
+                    setHorarioFuncionamento(horario);
+                }
             } catch (error) {
                 console.error("Erro ao buscar horários:", error);
             }
@@ -118,10 +132,24 @@ const EscolherHorario = ({data, updateFieldHandler, arenaId}) => {
 
     useEffect(() => {
         const fetchAgendamentos = async () => {
-            if (!data.dia || !data.id_quadra) return;
+            console.log("Fetch Agendamentos - QuadraID:", data.id_quadra, "Dia:", data.dia);
+
+            if (!data.dia || !data.id_quadra || data.id_quadra === "undefined") {
+                 console.warn("fetchAgendamentos ignorado: QuadraID ou Dia ausentes.");
+                 setAgendamentos([]);
+                 return;
+            }
 
             try {
                 const response = await fetch(`${import.meta.env.VITE_API_URL}/agendamentos/${data.id_quadra}/${data.dia}`);
+                
+                if (!response.ok) {
+                    const errRes = await response.json().catch(() => ({}));
+                    console.error("Erro response agendamentos:", errRes);
+                    setAgendamentos([]);
+                    return;
+                }
+
                 const result = await response.json();
                 if (Array.isArray(result)) {
                     setAgendamentos(result);
@@ -130,10 +158,12 @@ const EscolherHorario = ({data, updateFieldHandler, arenaId}) => {
                 }
             } catch (error) {
                 console.error("Erro ao buscar agendamentos:", error);
+                setAgendamentos([]);
             }
         };
         fetchAgendamentos();
     }, [data.dia, data.id_quadra]);
+
 
     useEffect(() => {
         if (!data.duracao) {
