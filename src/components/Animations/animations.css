@@ -1,0 +1,336 @@
+/* FUTEBOL */
+
+svg#freepik_stories-junior-soccer:not(.animated) .animable {
+    opacity: 0;
+}
+
+svg#freepik_stories-junior-soccer.animated #freepik--character-2--inject-22 {
+    animation: 1.5s Infinite linear floating;
+    animation-delay: 0s;
+}
+
+svg#freepik_stories-junior-soccer.animated #freepik--character-1--inject-22 {
+    animation: 1.5s Infinite linear floating;
+    animation-delay: 0s;
+}
+
+svg#freepik_stories-junior-soccer.animated #freepik--soccer-ball--inject-22 {
+    animation: 1.5s Infinite linear floating;
+    animation-delay: 0s;
+}
+
+@keyframes floating {
+    0% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+/* VOLEI */
+
+svg#freepik_stories-beach-volleyball:not(.animated) .animable {
+    opacity: 0;
+}
+
+svg#freepik_stories-beach-volleyball.animated #freepik--character-1--inject-43 {
+    animation: 1.5s Infinite linear floating;
+    animation-delay: 0s;
+}
+
+svg#freepik_stories-beach-volleyball.animated #freepik--Ball--inject-43 {
+    animation: 1.5s Infinite linear floating;
+    animation-delay: 0s;
+}
+
+@keyframes floating {
+    0% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+/* LOGIN */
+
+
+svg#freepik_stories-buffer:not(.animated) .animable {
+    opacity: 0;
+}
+
+svg#freepik_stories-buffer.animated #freepik--Icons--inject-179 {
+    animation: 1.5s Infinite linear floating;
+    animation-delay: 0s;
+}
+
+svg#freepik_stories-buffer.animated #freepik--Character--inject-179 {
+    animation: 1.5s Infinite linear floating;
+    animation-delay: 0s;
+}
+
+@keyframes floating {
+    0% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+/* CADASTRO */
+
+svg#freepik_stories-work-time:not(.animated) .animable {
+    opacity: 0;
+}
+
+svg#freepik_stories-work-time.animated #freepik--Gears--inject-16--inject-236 {
+    animation: 1.5s Infinite linear floating;
+    animation-delay: 0s;
+}
+
+svg#freepik_stories-work-time.animated #freepik--Chat--inject-16--inject-236 {
+    animation: 1.5s Infinite linear floating;
+    animation-delay: 0s;
+}
+
+svg#freepik_stories-work-time.animated #freepik--Characters--inject-16--inject-236 {
+    animation: 1.5s Infinite linear floating;
+    animation-delay: 0s;
+}
+
+@keyframes floating {
+    0% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+/* CAMPO */
+
+svg#freepik_stories-team-lineup:not(.animated) .animable {
+    opacity: 0;
+}
+
+svg#freepik_stories-team-lineup.animated #freepik--Shadows--inject-28 {
+    animation: 1.5s Infinite linear floating;
+    animation-delay: 0s;
+}
+
+svg#freepik_stories-team-lineup.animated #freepik--Field--inject-28 {
+    animation: 1.5s Infinite linear floating;
+    animation-delay: 0s;
+}
+
+svg#freepik_stories-team-lineup.animated #freepik--Score--inject-28 {
+    animation: 1.5s Infinite linear floating;
+    animation-delay: 0s;
+}
+
+svg#freepik_stories-team-lineup.animated #freepik--Banner--inject-28 {
+    animation: 1.5s Infinite linear floating;
+    animation-delay: 0s;
+}
+
+svg#freepik_stories-team-lineup.animated #freepik--Shield--inject-28 {
+    animation: 1.5s Infinite linear floating;
+    animation-delay: 0s;
+}
+
+@keyframes floating {
+    0% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+.animator-hidden {
+    display: none;
+}
+
+/* VOLEI 2 */
+
+svg#freepik_stories-beach-volleyball:not(.animated) .animable {
+    opacity: 0;
+}
+
+svg#freepik_stories-beach-volleyball.animated #freepik--Clouds--inject-45 {
+    animation: 1.5s Infinite linear wind;
+    animation-delay: 0s;
+}
+
+svg#freepik_stories-beach-volleyball.animated #freepik--Sun--inject-45 {
+    animation: 1.5s Infinite linear heartbeat;
+    animation-delay: 0s;
+}
+
+svg#freepik_stories-beach-volleyball.animated #freepik--Plants--inject-45 {
+    animation: 1.5s Infinite linear wind;
+    animation-delay: 0s;
+}
+
+svg#freepik_stories-beach-volleyball.animated #freepik--character-2--inject-45 {
+    animation: 1.5s Infinite linear wind;
+    animation-delay: 0s;
+}
+
+svg#freepik_stories-beach-volleyball.animated #freepik--Ball--inject-45 {
+    animation: 1.5s Infinite linear floating;
+    animation-delay: 0s;
+}
+
+svg#freepik_stories-beach-volleyball.animated #freepik--character-4--inject-45 {
+    animation: 1.5s Infinite linear floating;
+    animation-delay: 0s;
+}
+
+@keyframes wind {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(1deg);
+    }
+
+    75% {
+        transform: rotate(-1deg);
+    }
+}
+
+@keyframes heartbeat {
+    0% {
+        transform: scale(1);
+    }
+
+    10% {
+        transform: scale(1.1);
+    }
+
+    30% {
+        transform: scale(1);
+    }
+
+    40% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    60% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes floating {
+    0% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+/* FUNCIONARIO */
+
+svg#freepik_stories-employee-of-the-month:not(.animated) .animable {
+    opacity: 0;
+}
+
+svg#freepik_stories-employee-of-the-month.animated #freepik--Pictures--inject-252 {
+    animation: 1.5s Infinite linear floating;
+    animation-delay: 0s;
+}
+
+svg#freepik_stories-employee-of-the-month.animated #freepik--Character--inject-252 {
+    animation: 1.5s Infinite linear floating;
+    animation-delay: 0.5s;
+}
+
+svg#freepik_stories-employee-of-the-month.animated #freepik--Sparkles--inject-252 {
+    animation: 1.5s Infinite linear wind;
+    animation-delay: 0s;
+}
+
+@keyframes floating {
+    0% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+@keyframes wind {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(1deg);
+    }
+
+    75% {
+        transform: rotate(-1deg);
+    }
+}
