@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, Landmark, SquarePen, CircleUserRound, Menu, X, CalendarCheck } from 'lucide-react';
 import './HeaderUser.css';
+import logo from '../../public/Arena_Hub.svg';
 
 const Header = ({ paginaAtual = 'agendar' }) => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -19,7 +20,7 @@ const Header = ({ paginaAtual = 'agendar' }) => {
       <div className={`BarraSuperiorUser ${isScrolled ? 'scrolled' : ''}`}>
 
         <div className="logo-nav">
-          <img src="../Arena_Hub.svg" className="logo" alt="Logo" />
+          <img src={logo} className="logo" alt="Logo" />
           <h2>Arena Hub</h2>
         </div>
 
