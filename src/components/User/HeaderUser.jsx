@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, Landmark, SquarePen, CircleUserRound, Menu, X, CalendarCheck } from 'lucide-react';
 import './HeaderUser.css';
-import logo from '../../public/Arena_Hub.svg';
+import logo from '../../public/arena-hub.svg';
 
 const Header = ({ paginaAtual = 'agendar' }) => {
   const [isScrolled, setIsScrolled] = useState(false);

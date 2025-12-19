@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
-import logo from "../../components/User/Arena_Hub.svg";
+import logo from "../../public/arena-hub.svg";
 
 export default function Login() {
     const [email, setEmail] = useState("");
